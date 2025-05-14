@@ -11,8 +11,8 @@ class Flare extends Model
 
     protected $fillable = [
         'user_id',
-        'lat',
-        'lng',
+        'latitude',
+        'longitude',
         'note',
         'category',
     ];
