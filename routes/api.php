@@ -5,11 +5,17 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Api\FlareController;
+use App\Http\Resources\UserResource;
+use App\Models\User;
 
-
-Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
-    return $request->user();
+Route::get('/users', function () {
+    return UserResource::collection(User::all());
 });
+
+Route::get('/ping', function () {
+    return response()->json(['message' => 'pong']);
+});
+
 
 Route::post('/register', [RegisteredUserController::class, 'store']);
 Route::post('/login', [AuthenticatedSessionController::class, 'store']);
