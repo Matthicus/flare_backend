@@ -15,11 +15,15 @@ return [
     |
     */
 
-    'paths' => ['*' , '/sanctum/csrf-cookie'],
+    'paths' => ['*' , 'sanctum/csrf-cookie', 'login', 'register'],
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => [env('FRONTEND_URL', 'http://localhost:3000' )],
+    'allowed_origins' => [
+        'https://localhost:3000',
+         'http://localhost:3000',
+        'https://flare.ddev.site',
+    ],
 
     'allowed_origins_patterns' => [],
 

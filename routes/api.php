@@ -19,6 +19,8 @@ Route::get('/ping', function () {
 
 Route::post('/register', [RegisteredUserController::class, 'store']);
 Route::post('/login', [AuthenticatedSessionController::class, 'store']);
+  
+
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/flares', [FlareController::class, 'index']); // Get all flares
