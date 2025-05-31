@@ -19,15 +19,23 @@ Route::get('/ping', function () {
 
 Route::post('/register', [RegisteredUserController::class, 'store']);
 Route::post('/login', [AuthenticatedSessionController::class, 'store']);
+
+Route::get('/me', function (Request $request) {
+    return $request->user();
+});
+
+  
+
   
 
 
-Route::middleware('auth:sanctum')->group(function () {
+//Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/logout', [AuthenticatedSessionController::class, 'destroy']);
     Route::get('/flares', [FlareController::class, 'index']); // Get all flares
     Route::post('/flares', [FlareController::class, 'store']); // Create a new flare
     Route::get('/flares/{id}', [FlareController::class, 'show']); // Get a single flare
     Route::delete('/flares/{id}', [FlareController::class, 'destroy']); // Delete a flare
-});
+//});
 
 
 

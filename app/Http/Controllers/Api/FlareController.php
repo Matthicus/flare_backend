@@ -22,18 +22,36 @@ class FlareController extends Controller
       public function store(Request $request)
     {
         $validated = $request->validate([
+            'user_id' => 'required|exists:users,id',
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric',
             'note' => 'required|string|max:255',
             'category' => 'nullable|string',
+            'place' => 'nullable|array',
+            'place.mapbox_id' => 'required_with:place|string',
+            'place.name' => 'required_with:place|string',
         ]);
+
+         $place = null;
+     if (isset($validated['place'])) {
+        $placeData = $validated['place'];
+        $place = \App\Models\Place::firstOrCreate(
+            ['mapbox_id' => $placeData['mapbox_id']],
+            [
+                'name' => $placeData['name'],
+                'latitude' => $validated['latitude'],
+                'longitude' => $validated['longitude'],
+            ]
+        );
+    }
         
         $flare = Flare::create([
-            'user_id' => Auth::id(),
+            'user_id' => $request->input('user_id'), // change back into auth for production
             'latitude' => $validated['latitude'],
             'longitude' => $validated['longitude'],
             'note' => $validated['note'],
             'category' => $validated['category'] ?? 'regular',
+            'place_id' => $place?->id,
         ]);
 
         return response()->json($flare, 201);
