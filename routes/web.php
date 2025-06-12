@@ -16,10 +16,10 @@ Route::get('/', function () {
 //     return '✅ Migrations complete!';
 // });
 
-Route::get('/db-tables', function () {
-    $tables = \DB::select('SELECT tablename FROM pg_tables WHERE schemaname = current_schema()');
-    return response()->json($tables);
-});
+// Route::get('/db-tables', function () {
+//     $tables = \DB::select('SELECT tablename FROM pg_tables WHERE schemaname = current_schema()');
+//     return response()->json($tables);
+// });
 
 
 require __DIR__.'/auth.php';

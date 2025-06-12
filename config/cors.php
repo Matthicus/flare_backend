@@ -15,7 +15,8 @@ return [
     |
     */
 
-    'paths' => ['*' , 'sanctum/csrf-cookie', 'login', 'register'],
+   'paths' => ['api/*', 'sanctum/csrf-cookie', 'login', 'logout', 'register'],
+
 
     'allowed_methods' => ['*'],
 
@@ -23,6 +24,7 @@ return [
         'https://localhost:3000',
          'http://localhost:3000',
         'https://flare.ddev.site',
+        'https://flare-frontend-app.vercel.app',
     ],
 
     'allowed_origins_patterns' => [],
