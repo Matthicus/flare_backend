@@ -21,12 +21,11 @@ return [
     'allowed_methods' => ['*'],
 
     'allowed_origins' => [
+        env('FRONTEND_URL', 'https://flare-frontend-app.vercel.app'),
+        'http://localhost:3000',
         'https://localhost:3000',
-         'http://localhost:3000',
-        'https://flare.ddev.site',
-        'https://flare-frontend-app.vercel.app',
-        'https://flare-app-iipz6.ondigitalocean.app',
     ],
+
 
     'allowed_origins_patterns' => [],
 
