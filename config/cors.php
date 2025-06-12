@@ -25,6 +25,7 @@ return [
          'http://localhost:3000',
         'https://flare.ddev.site',
         'https://flare-frontend-app.vercel.app',
+        'https://flare-app-iipz6.ondigitalocean.app',
     ],
 
     'allowed_origins_patterns' => [],
