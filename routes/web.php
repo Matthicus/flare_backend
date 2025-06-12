@@ -5,10 +5,15 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
+use Laravel\Sanctum\Http\Controllers\CsrfCookieController;
 
 
 Route::get('/', function () {
     return ['Laravel' => app()->version()];
+});
+
+Route::middleware('web')->get('/sanctum/csrf-cookie', function () {
+    return response()->noContent();
 });
 
 // Route::get('/run-migrations', function () {
