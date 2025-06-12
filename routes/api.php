@@ -1,13 +1,15 @@
 <?php
 
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Laravel\Sanctum\Http\Controllers\CsrfCookieController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Api\FlareController;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+
+
 
 Route::get('/users', function () {
     return UserResource::collection(User::all());

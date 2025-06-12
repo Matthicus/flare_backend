@@ -1,30 +1,18 @@
 <?php
 
-
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use Laravel\Sanctum\Http\Controllers\CsrfCookieController;
 
-
 Route::get('/', function () {
     return ['Laravel' => app()->version()];
 });
 
-Route::middleware('web')->get('/sanctum/csrf-cookie', function () {
-    return response()->noContent();
-});
+// Use Sanctum's CsrfCookieController to handle CSRF cookie route
+Route::middleware('web')->get('/sanctum/csrf-cookie', [CsrfCookieController::class, 'show']);
 
-// Route::get('/run-migrations', function () {
-//     Artisan::call('migrate', ['--force' => true]);
-//     return '✅ Migrations complete!';
-// });
-
-// Route::get('/db-tables', function () {
-//     $tables = \DB::select('SELECT tablename FROM pg_tables WHERE schemaname = current_schema()');
-//     return response()->json($tables);
-// });
-
+// Your other routes or comments...
 
 require __DIR__.'/auth.php';
