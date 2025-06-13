@@ -15,7 +15,5 @@ Route::middleware('web')->get('/sanctum/csrf-cookie', [CsrfCookieController::cla
 
 // Your other routes or comments...
 
-Route::middleware('web')->group(function () {
-    Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
-});
+
 

@@ -23,6 +23,7 @@ Route::get('/known-places', fn() => \App\Models\KnownPlace::select('id', 'name',
 
 // Authenticated flares
 Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/logout', [AuthenticatedSessionController::class, 'destroy']);
     Route::get('/flares', [FlareController::class, 'index']);
     Route::post('/flares', [FlareController::class, 'store']);
     Route::get('/flares/{id}', [FlareController::class, 'show']);
