@@ -17,12 +17,18 @@ Route::post('/register', [RegisteredUserController::class, 'store']);
 Route::post('/login', [AuthenticatedSessionController::class, 'store']);
 
 
+
 // Public known places
 Route::get('/known-places/nearby', [FlareController::class, 'nearbyKnownPlaces']);
 Route::get('/known-places', fn() => \App\Models\KnownPlace::select('id', 'name', 'lat', 'lon')->get());
 
 // Authenticated flares
 Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/me', function (Request $request) {
+        return new UserResource($request->user());
+    });
+    
+    // ... your existing routes
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy']);
     Route::get('/flares', [FlareController::class, 'index']);
     Route::post('/flares', [FlareController::class, 'store']);

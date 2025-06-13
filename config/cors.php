@@ -15,25 +15,44 @@ return [
     |
     */
 
-   'paths' => ['api/*', 'sanctum/csrf-cookie', 'login', 'logout', 'register'],
-
+    'paths' => [
+        'api/*', 
+        'sanctum/csrf-cookie', 
+        'login', 
+        'logout', 
+        'register',
+        'broadcasting/auth' // Added in case you use broadcasting
+    ],
 
     'allowed_methods' => ['*'],
 
     'allowed_origins' => [
         env('FRONTEND_URL', 'https://flare-frontend-app.vercel.app'),
+        'https://flare-frontend-app.vercel.app',
+        'https://flare-frontend-app-git-main-matthices-projects.vercel.app', // From your sanctum config
         'http://localhost:3000',
         'https://localhost:3000',
     ],
 
+    'allowed_origins_patterns' => [
+        'https://*--flare-frontend-app-*.vercel.app', // Preview deployments
+        'https://flare-frontend-app-*.vercel.app',     // Branch deployments
+    ],
 
-    'allowed_origins_patterns' => [],
+    'allowed_headers' => [
+        'Accept',
+        'Authorization', 
+        'Content-Type',
+        'X-Requested-With',
+        'X-CSRF-TOKEN',
+        'X-XSRF-TOKEN',
+    ],
 
-    'allowed_headers' => ['*'],
+    'exposed_headers' => [
+        'X-CSRF-TOKEN',
+    ],
 
-    'exposed_headers' => [],
-
-    'max_age' => 0,
+    'max_age' => 86400, // Cache preflight for 24 hours
 
     'supports_credentials' => true,
 
