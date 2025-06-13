@@ -15,7 +15,7 @@ Route::get('/users', fn() => UserResource::collection(User::all()));
 // Public auth
 Route::post('/register', [RegisteredUserController::class, 'store']);
 Route::post('/login', [AuthenticatedSessionController::class, 'store']);
-Route::get('/me', fn(Request $request) => new UserResource($request->user()));
+
 
 // Public known places
 Route::get('/known-places/nearby', [FlareController::class, 'nearbyKnownPlaces']);
