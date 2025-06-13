@@ -21,7 +21,7 @@ return [
     'allowed_methods' => ['*'],
 
     'allowed_origins' => [
-        env('FRONTEND_URL', 'https://flare-frontend-app.vercel.app'),
+        env('FRONTEND_URL', 'https://flare-frontend-app-git-main-matthices-projects.vercel.app'),
         'http://localhost:3000',
         'https://localhost:3000',
     ],
